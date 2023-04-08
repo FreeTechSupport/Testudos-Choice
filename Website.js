@@ -1,20 +1,14 @@
-//const { Client } = require("pg");
+let courses = [];
 
-//const client = new Client(process.env.DATABASE_URL);
-let courses = ["CMSC433", "CMSC421"];
-
-/*(async () => {
-  await client.connect();
-  try {
-    //courses = await client.query("SELECT courseId FROM courses");
-    console.log(results);
-  } catch (err) {
-    console.error("error executing query:", err);
-  } finally {
-    client.end();
+process(); 
+async function process(){
+  let response = await fetch('/courseList');
+  let responseJson = await response.json();
+  for (var i = 0; i < responseJson.rows.length; i++) {
+    courses.push(responseJson.rows[i].courseid);
   }
-})();*/
-
+  console.log(courses);
+}
 
 
 function autocomplete(inp, arr) {
