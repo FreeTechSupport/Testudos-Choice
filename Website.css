@@ -2,12 +2,14 @@
 body {
   font: 50px Arial;
   text-align: center;
-  text-shadow: 2px 2px #f5f5f596;
+  text-shadow: 1px 1px #f5f5f596;
 }
 .autocomplete {
   /*the container must be positioned relative:*/
   position: relative;
   display: inline-block;
+  font-size: 16px;
+  text-align: left;
 }
 input {
   border-radius: 10px;
@@ -22,6 +24,7 @@ input[type=text] {
 }
 input[type=submit] {
   border-radius: 10px;
+  cursor: pointer;
   border: 1px solid transparent;
   background-color: DodgerBlue;
   color: #fff;
@@ -36,12 +39,15 @@ input[type=submit] {
   top: 100%;
   left: 0;
   right: 0;
+  
 }
 .autocomplete-items div {
+
   padding: 10px;
   cursor: pointer;
   background-color: #fff;
   border-bottom: 1px solid #d4d4d4;
+
 }
 .autocomplete-items div:hover {
   /*when hovering an item:*/
@@ -51,4 +57,66 @@ input[type=submit] {
   /*when navigating through the items using the arrow keys:*/
   background-color: DodgerBlue !important;
   color: #ffffff;
+}
+/*help button*/
+body {
+  /*font-family: Arial;*/
+  background: url("img/unnamed (1).jpg") no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+h1 {
+  text-align: center;
+  font-family: Arial;
+  color: DodgerBlue;
+  margin: 20px 0;
+}
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: url("img/unnamed (1).jpg") no-repeat;
+  transition: opacity 300ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+.popup {
+  margin: 60px auto;
+  padding: 10px;
+  background: #fff;
+  border-radius: 10px;
+  width: 50%;
+  position: relative;
+  transition: all 4s ease-in-out;
+  
+}
+.popup h2 {
+  margin-top: 0;
+  color: rgb(7, 7, 7);
+  font: Arial;
+  font-size: 30px;
+}
+.popup .close {
+  position: absolute;
+}
+.button{
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: #d4d4d4;
+  color: black;
+  border: transparent;
+  padding: 10px 20px;
+}
+.content{
+  font-size: 30px; 
+  text-align: center;
+}
+.close{
+  position: absolute;
 }
