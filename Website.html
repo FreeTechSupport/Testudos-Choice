@@ -33,47 +33,22 @@
         <![endif]-->
         <!--<div class="img-mainpage"></div>-->
         <script src="Website.js" async defer></script>
-       <!-- <div><img src="img/logo.png" alt="" style="width: 200px; height:130px" id="img"></div>-->
-
-
-        <button id="myButton" style=" background-color: #d4d4d4;
-        border-radius: 10px;
-        border: none;
-        color:black;
-        padding: 10px 25px;
-        text-decoration: none;
-        display: inline-block;
-        cursor: pointer;
-        font-size: 16px;
-        position: fixed; 
-        z-index: 1; 
-        left: 630px; 
-        top: 400px; "> 
-              Help 
-          </button> 
-        <div id="myPopup" class="popup"> 
-            <div class="popup-content"> 
-                <h1 style="color:DodgerBlue; font-size: 40px;"> 
-                      Help 
-                  </h1> 
-                <p>WELCOME TO [name pending] blah blah blah</p> 
-                <button id="closePopup"> 
-                      Close 
-                  </button> 
-            </div> 
-        </div> 
-        <script> 
-            myButton.addEventListener("click", function () { 
-                myPopup.classList.add("show"); 
-            }); 
-            closePopup.addEventListener("click", function (){
-                myPopup.classList.remove("show");
-            });
-            window.addEventListener("click", function (event){
-                if (event.target == myPopup){
-                    myPopup.classList.remove("show");
-                }
-            });
-        </script>
+        <!--<button class="button
+        button1">Help</button>-->
+        <div class="box">
+            <a class="button" href="#popup1">Help</a>
+        </div>
+        <div id="popup1" class="overlay">
+            <div class="popup">
+                <h1>What is this?</h1>
+                <a class="close" href="#">&times;
+                </a>
+                <div class="content">
+                    <br>
+                    <br>Welcome to [name pending]! Here you will be able to do xyz. Just type ___ 
+                    into the search bar and press subit to get started. :)
+                </div>
+            </div>
+        </div>
     </body>
 </html>
