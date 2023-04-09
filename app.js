@@ -5,12 +5,44 @@ var express = require('express');
 var bodyParser = require('body-parser')
 var app = express()
 let courses = [];
+let profs = [];
+let courseInfo = [];
+
+function delay(milliseconds) {
+    return new Promise(resolve => {
+        setTimeout(resolve, milliseconds);
+    });
+}
 
 async function perform_query(query) {
     await client.connect();
     try {
         courses = await client.query(query);
         //console.log(courses);
+    } catch (err) {
+        console.error("error executing query:", err);
+    } finally {
+        //client.end();
+    }
+};
+
+async function get_profs(courseName) {
+    //await client.connect();
+    try {
+        courseInfo = await client.query("SELECT * FROM Professors WHERE courseid = " + "'" + courseName + "'");
+        console.log(courseInfo);
+    } catch (err) {
+        console.error("error executing query:", err);
+    } finally {
+        //client.end();
+    }
+};
+
+async function get_courseinfo(courseName) {
+    //await client.connect();
+    try {
+        profs = await client.query("SELECT * FROM courses WHERE courseid = " + "'" + courseName + "'");
+        console.log(profs);
     } catch (err) {
         console.error("error executing query:", err);
     } finally {
@@ -32,13 +64,18 @@ app.get('/', function (req, res) {
 });
 
 app.post('/analyzer', (req, res) => {
-    const result = req.body.myCourse;
-    
+    const result = req.body.myCourse; 
     res.redirect('/results?value=' + result);
 });
 
 app.get('/results', (req, res) => {
     const value = req.query.value;
+    /*
+    get_profs(value)
+    get_courseinfo(value)
+    delay(2000);
+    res.json({profs: profs, courseinfo: courseInfo});
+    */
     res.sendFile(__dirname + '/test.html');
   });
 
