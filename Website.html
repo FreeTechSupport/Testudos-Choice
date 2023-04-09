@@ -4,59 +4,51 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>TerpRank</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="Website.css">
+        <script type="text/javascript" src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/web3@0.20.5/dist/web3.min.js"></script>
+    </head>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>TerpRank</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="Website.css">
-    <script type="text/javascript" src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/web3@0.20.5/dist/web3.min.js"></script>
-</head>
+    <body>
+        <!--<h2><img src="img/logo.png" alt="" style="left: 80px; top: 2px"></h2>-->
+       <!-- <h2>Killing Myself </h2> -->
+       <h1><img src="img/logo.png" alt=""
+        style="width: 200px; height: 130px;" id="img"></h1>
+        <form id="form" autocomplete="off" action="/action_page.php">
+            <div class="autocomplete" style="width:300px;">
+              <input id="myInput" type="text" name="myCourse" placeholder="Course" size="10">
+            </div>
+            <input type="submit">
+          </form>
 
-<body>
-    <h2>TerpRank</h2>
-    <form action="/analyzer" method="post" autocomplete="off">
-        <div class="autocomplete" style="width:300px;">
-            <input id="myInput" type="text" name="myCourse" placeholder="Course">
-        </div>
-        <input type="submit">
-    </form>
-    <script>
-        var input =
-            document.getElementById("myInput");
-        input.addEventListener("keypress",
-            function (event) {
-                if (event.key === "Enter") {
-                    event.preventDefault();
-                    document.getElementById("myBtn").click();
-                }
-            })
-    </script>
-    <!--[if lt IE 7]>
+        
+        <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-    <!--<div class="img-mainpage"></div>-->
-    <script src="Website.js" async defer></script>
-    <!--<button class="button
+        <!--<div class="img-mainpage"></div>-->
+        <script src="Website.js" async defer></script>
+        <!--<button class="button
         button1">Help</button>-->
-    <div class="box">
-        <a class="button" href="#popup1">Help</a>
-    </div>
-    <div id="popup1" class="overlay">
-        <div class="popup">
-            <h1>What is this?</h1>
-            <a class="close" href="#">&times;
-            </a>
-            <div class="content">
-                <br>
-                <br>Welcome to [name pending]! Here you will be able to do xyz. Just type ___
-                into the search bar and press subit to get started. :)
+        <div class="box">
+            <a class="button" href="#popup1">Help</a>
+        </div>
+        <div id="popup1" class="overlay">
+            <div class="popup">
+                <h1>What is this?</h1>
+                <a class="close" href="#">&times;
+                </a>
+                <div class="content">
+                    <br>
+                    <br>Welcome to [name pending]! Here you will be able to do xyz. Just type ___ 
+                    into the search bar and press subit to get started. :)
+                </div>
             </div>
         </div>
-    </div>
-</body>
-
+    </body>
 </html>
