@@ -30,8 +30,8 @@ app.get('/', function (req, res) {
 });
 
 app.post('/analyzer', (req, res) => {
-    const result = req.body.myCourse; 
-    res.redirect('/results?value=' + result);
+    result = req.body.myCourse;
+    res.sendFile(__dirname + '/test.html');
 });
 
 app.get('/results', async (req, res) => {
