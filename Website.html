@@ -33,6 +33,7 @@
         <![endif]-->
         <!--<div class="img-mainpage"></div>-->
         <script src="Website.js" async defer></script>
+<<<<<<< Updated upstream
         <!--<button class="button
         button1">Help</button>-->
         <div class="box">
@@ -50,5 +51,49 @@
                 </div>
             </div>
         </div>
+=======
+       <!-- <div><img src="img/logo.png" alt="" style="width: 200px; height:130px" id="img"></div>-->
+
+
+        <button id="myButton" style=" background-color: #d4d4d4;
+        border-radius: 10px;
+        border: none;
+        color:black;
+        padding: 10px 25px;
+        text-decoration: none;
+        display: inline-block;
+        cursor: pointer;
+        font-size: 16px;
+        position: fixed; 
+        z-index: 1; 
+        left: 630px; 
+        top: 400px; "> 
+              Help 
+          </button> 
+        <div id="myPopup" class="popup"> 
+            <div class="popup-content"> 
+                <h1 style="color:DodgerBlue; font-size: 40px; text-align: center;"> 
+                      Help 
+                  </h1> 
+                <p>WELCOME TO [name pending] blah blah blah</p> 
+                <button id="closePopup"> 
+                      Close 
+                  </button> 
+            </div> 
+        </div> 
+        <script> 
+            myButton.addEventListener("click", function () { 
+                myPopup.classList.add("show"); 
+            }); 
+            closePopup.addEventListener("click", function (){
+                myPopup.classList.remove("show");
+            });
+            window.addEventListener("click", function (event){
+                if (event.target == myPopup){
+                    myPopup.classList.remove("show");
+                }
+            });
+        </script>
+>>>>>>> Stashed changes
     </body>
 </html>
