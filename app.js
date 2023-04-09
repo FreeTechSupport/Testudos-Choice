@@ -33,9 +33,14 @@ app.get('/', function (req, res) {
 
 app.post('/analyzer', (req, res) => {
     const result = req.body.myCourse;
-    console.log(result);
-    res.send("Data received" + result);
+    
+    res.redirect('/results?value=' + result);
 });
+
+app.get('/results', (req, res) => {
+    const value = req.query.value;
+    res.sendFile(__dirname + '/test.html');
+  });
 
 var server = app.listen(port, function () {
 
