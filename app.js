@@ -20,6 +20,7 @@ async function query(query) {
     }
   }
 
+await query("CREATE TABLE IF NOT EXISTS course_evals (courseid STRING, courseName STRING, course_description STRING, course_median_gpa STRING, professors STRING, course_analysis FLOAT)")
 
 app.use(express.static(__dirname));
 app.use(bodyParser.json())
@@ -78,7 +79,8 @@ async function processCourseAndProfs(courses, profs) {
     coursename = courses.rows[0].coursename
     course_description = courses.rows[0].course_description
     course_median_gpa = courses.rows[0].median_gpa
-    course_professors = courses.rows[0].professors.split(',')
+    course_professors_string = courses.rows[0].professors
+    course_professors = course_professors_string.split(',')
 
     //console.log(profs.rows[0])
     
@@ -145,7 +147,7 @@ async function processCourseAndProfs(courses, profs) {
 
     //console.log({courseid:courseid, coursename: coursename, course_description: course_description, course_median_gpa: course_median_gpa, professors: course_professors, course_analysis:course_analysis})
 
-    return {courseid:courseid, coursename: coursename, course_description: course_description, course_median_gpa: course_median_gpa, professors: course_professors, course_analysis:course_analysis}
+    return {courseid:courseid, coursename: coursename, course_description: course_description, course_median_gpa: course_median_gpa, professors: course_professors_string, course_analysis:course_analysis}
 
 
     /*course_professors.forEach(prof => {
