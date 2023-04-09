@@ -8,6 +8,11 @@ body {
   justify-content: center;
   min-height: 100vh;
 }
+
+h3 {
+  color: red;
+  text-align: center;
+}
 #form {
   padding-top:0rem;
 }
@@ -95,6 +100,7 @@ body {
   border: 1px solid #888888; 
   width: 50%; 
   font-weight: bold; 
+  font-size: smaller;
 } 
 .popup-content button { 
   display: block; 
@@ -107,6 +113,7 @@ h1 {
   color: dodgerblue; 
 } 
 h3{text-align: left;}
+
 /*loading screen*/
 /*
 body {
