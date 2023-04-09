@@ -20,7 +20,7 @@ async function query(query) {
     }
   }
 
-await query("CREATE TABLE IF NOT EXISTS course_evals (courseid STRING, courseName STRING, course_description STRING, course_median_gpa STRING, professors STRING, course_analysis FLOAT)")
+query("CREATE TABLE IF NOT EXISTS course_evaluations (courseid STRING, courseName STRING, course_description STRING, course_median_gpa STRING, professors STRING, course_analysis STRING)")
 
 app.use(express.static(__dirname));
 app.use(bodyParser.json())
@@ -73,6 +73,23 @@ async function processCourseAndProfs(courses, profs) {
 
     //console.log(courses.rows);
     //console.log(profs.rows);
+
+    //check if row exists
+    //console.log(courses)
+    course_page = await query("SELECT * FROM course_evaluations WHERE courseid=" + "'" + courses.rows[0].courseid + "'")
+
+    course_page = course_page.rows
+
+
+    if(course_page.length != 0){
+
+        course_page = course_page[0]
+        
+        console.log("here?")
+       return {courseid:course_page.courseid, coursename: course_page.coursename, course_description: course_page.course_description, course_median_gpa: course_page.course_median_gpa, professors: course_page.professors, course_analysis:course_page.course_analysis}
+    }
+    
+    
 
     //Store name of class
     courseid = courses.rows[0].courseid;
@@ -146,6 +163,21 @@ async function processCourseAndProfs(courses, profs) {
     console.log(course_analysis);
 
     //console.log({courseid:courseid, coursename: coursename, course_description: course_description, course_median_gpa: course_median_gpa, professors: course_professors, course_analysis:course_analysis})
+
+    console.log("here1")
+    console.log(course_analysis.replace("'","''"))
+    console.log("here2")
+
+    quer = "INSERT INTO course_evaluations VALUES (\'" + courseid +"\', \'" + coursename.replace("\'","''") + "\', \'" + course_description.replace("'","''") + "\', \'" + course_median_gpa + "\', \'" + course_professors_string.replace("'","''") + "\', \'" + course_analysis.replace("'","''") + "\')";
+
+    console.log(quer);
+
+    try {
+        await query("INSERT INTO course_evaluations VALUES (\'" + courseid +"\', \'" + coursename.replace("'","") + "\', \'" + course_description.replace("'","") + "\', \'" + course_median_gpa + "\', \'" + course_professors_string.replace("'","") + "\', \'" + course_analysis.replace("'","") + "\')");
+    }
+    catch {
+        console.log("insert error o well :(")
+    }
 
     return {courseid:courseid, coursename: coursename, course_description: course_description, course_median_gpa: course_median_gpa, professors: course_professors_string, course_analysis:course_analysis}
 
