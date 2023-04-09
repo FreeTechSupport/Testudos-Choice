@@ -1,0 +1,6 @@
+* { box-sizing: border-box; }
+body{
+    font-family: Arial;
+  background: url("img/gamer.jpg") no-repeat;
+  background-size: cover;
+}
