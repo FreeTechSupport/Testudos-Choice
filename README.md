@@ -1,3 +1,13 @@
+#### TESTUDO'S CHOICE
+
+a website that provides AI generated feedback of a class and its professors based on the reviews of a professor, the description of a class, and the typical/average grades of the class.
+
+
+
+
+
+
+
 ## Inspiration
 We were all interested in working with AI frameworks, and we saw a need for a site that quickly compares class reviews. 
 ## What it does
