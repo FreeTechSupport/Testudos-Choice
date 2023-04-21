@@ -2,11 +2,7 @@
 
 a website that provides AI generated feedback of a class and its professors based on the reviews of a professor, the description of a class, and the typical/average grades of the class.
 
-
-
-
-
-
+![image](https://user-images.githubusercontent.com/43095558/233651251-12afd6c7-0e81-4c05-ab43-da81e553568d.png)
 
 ## Inspiration
 We were all interested in working with AI frameworks, and we saw a need for a site that quickly compares class reviews. 
