@@ -1,12 +1,18 @@
+//const { redirect } = require("express/lib/response");
+
 let courses = [];
 
 process(); 
 async function process(){
-  let response = await fetch('/');
+
+  let response = await fetch('/courseIds');
   let responseJson = await response.json();
+
   for (var i = 0; i < responseJson.rows.length; i++) {
     courses.push(responseJson.rows[i].courseid);
   }
+  console.log("here2")
+  //redirect('Website.html')
   //console.log(courses);
 }
 

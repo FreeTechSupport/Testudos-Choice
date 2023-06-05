@@ -1,10 +1,12 @@
 const { Client } = require("pg");
+const path = require("path")
 
-const port = 8084;
+const port = 8082;
 var express = require('express');
 var bodyParser = require('body-parser')
 var app = express()
 let result = ""
+let coursesJson = ""
 
 
 async function query(query) {
@@ -28,11 +30,24 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/', function (req, res) {
     console.log('i receive a GET request');
-
-    query("SELECT courseid FROM courses").then(courses => res.json(courses));
+    res.redirect('Website.html')
 });
 
+app.get('/courseIds', function (req, res) {
+
+  console.log("here")
+
+  if(coursesJson == ""){
+    query("SELECT courseid FROM courses").then(courseList => {res.json(courseList); coursesJson = courseList});
+  }
+  else{
+    res.json(coursesJson)
+  }
+
+})
+
 app.post('/analyzer', (req, res) => {
+    console.log("here")
     result = req.body.myCourse; 
     res.sendFile(__dirname + "/test.html")
 });
