@@ -4,7 +4,8 @@ a website that provides AI generated feedback of a class and its professors base
 
 ![image](https://user-images.githubusercontent.com/43095558/233651251-12afd6c7-0e81-4c05-ab43-da81e553568d.png)
 
-![image](https://github.com/FreeTechSupport/Testudos-Choice/assets/43095558/06613ec0-3f29-417f-9b8e-5605eed089a4)
+![image](https://github.com/FreeTechSupport/Testudos-Choice/assets/43095558/f2298c3b-18b9-426d-acfb-013f4d1b69ef)
+
 
 
 ## Inspiration
