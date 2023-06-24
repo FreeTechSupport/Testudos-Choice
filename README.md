@@ -4,6 +4,9 @@ a website that provides AI generated feedback of a class and its professors base
 
 ![image](https://user-images.githubusercontent.com/43095558/233651251-12afd6c7-0e81-4c05-ab43-da81e553568d.png)
 
+![image](https://github.com/FreeTechSupport/Testudos-Choice/assets/43095558/06613ec0-3f29-417f-9b8e-5605eed089a4)
+
+
 ## Inspiration
 We were all interested in working with AI frameworks, and we saw a need for a site that quickly compares class reviews. 
 ## What it does
