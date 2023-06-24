@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Testudo's Choice</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="pages/Website.css">
+        <script type="text/javascript" src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
+        <script type="text/javascript" src="https://unpkg.com/web3@0.20.5/dist/web3.min.js"></script>
+    </head>
+    <body>
+        <style>
+            body {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+            #outer {
+              width: 100%;
+              height: 100%;
+            }
+            #inner {
+              border: 0.05em solid black;
+              width: 50%; /* specify a fixed width */
+              margin: 0 auto; /* center horizontally */
+            }
+          </style>
+       <h2><img src="pages/img/logo.png" alt="University of Maryland"
+        style="width: 200px; height: 130px;" id="img"></h2>
+        <form autocomplete="off" action="/analyzer" method="post">
+        <form id="form" autocomplete="off" action="/analyzer" method="post">
+            <div class="autocomplete" style="width:300px;">
+              <input id="myInput" type="text" name="myCourse" placeholder="Course" size="10">
+            </div>
+            <input type="submit">
+          </form>
+        <!--<div class="img-mainpage"></div>-->
+        <script src="pages/Website.js" async defer></script>
+        <button id="myButton" style=" background-color: DodgerBlue;
+        position: relative;
+        border-radius: 10px;
+        border: none;
+        color:white;
+        padding: 10px 25px;
+        text-decoration: none;
+        display: inline-block;
+        cursor: pointer;
+        font-size: 16px; "> 
+              Help 
+          </button> 
+        <div id="myPopup" class="popup"> 
+            <div class="popup-content"> 
+                <h1 style="color:DodgerBlue; font-size: 40px; text-align: center;"> 
+                      Help 
+                  </h1> 
+                <p>WELCOME TO TESTUDO'S CHOICE! Input a course name into the text field and you'll get a rating of the course from Testudo herself!</p> 
+                <button id="closePopup"> 
+                      Close 
+                  </button> 
+            </div> 
+        </div> 
+        <script> 
+            myButton.addEventListener("click", function () { 
+                myPopup.classList.add("show"); 
+            }); 
+            closePopup.addEventListener("click", function (){
+                myPopup.classList.remove("show");
+            });
+            window.addEventListener("click", function (event){
+                if (event.target == myPopup){
+                    myPopup.classList.remove("show");
+                }
+            });
+        </script>
+    </body>
+</html>

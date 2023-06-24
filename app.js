@@ -1,10 +1,13 @@
+const { readFile } = require('fs');
+const util = require('util');
+const readFileAsync = util.promisify(readFile);
 const { Client } = require("pg");
 const path = require("path")
-
 const port = 8082;
 var express = require('express');
 var bodyParser = require('body-parser')
 var app = express()
+app.set('view engine', 'ejs');
 let result = ""
 let coursesJson = ""
 
@@ -30,7 +33,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/', function (req, res) {
     console.log('i receive a GET request');
-    res.redirect('Website.html')
+    res.sendFile(__dirname + '/pages/Website.html')
 });
 
 app.get('/courseIds', function (req, res) {
@@ -48,49 +51,52 @@ app.get('/courseIds', function (req, res) {
 
 app.post('/analyzer', (req, res) => {
     console.log("here")
-    result = req.body.myCourse; 
-    res.sendFile(__dirname + "/test.html")
+
+    //show loading screen
+    //res.sendFile(__dirname + "/loadingscreen.html")
+    //get results
+    var courseId = req.body.myCourse; 
+    getResults(courseId).then((result) => {
+
+
+      let coursename = '${result.coursename}'
+
+      res.render('test', {
+        CourseName : result.courseid + ": " + result.coursename,
+        CourseDesc : result.course_description,
+        CourseMedianGPA : result.course_median_gpa,
+        CourseProfs : result.professors,
+        Analysis : result.course_analysis
+      })
+      //modifyHTML(result).then(html => {
+       // console.log("here2")
+      //  console.log(html)
+      //  res.send(html)
+      //})
+
+    } )
+    //show results
+    //console.log("here1")
+    //console.log(result)
+    //console.log(response)
+    //async()
+    //console.log(modifyHTML(result))
+    //res.send(modifyHTML(result))
 });
 
-app.get('/results', async (req, res) => {
-    //console.log(value);
+async function getResults(result) {
+  let courses = await query("SELECT * FROM courses WHERE courseid = " + "'" + result + "'");
+  let profs = await query("SELECT * FROM Professors WHERE courseid = " + "'" + result + "'");
+  let response = await processCourseAndProfs(courses, profs);
 
-    let data = null;
-    let courses = await query("SELECT * FROM courses WHERE courseid = " + "'" + result + "'");
-    let profs = await query("SELECT * FROM Professors WHERE courseid = " + "'" + result + "'");
-    let response = await processCourseAndProfs(courses, profs)
-    res.json(response);
-    /*
-    await query("SELECT * FROM courses WHERE courseid = " + "'" + value + "'").then(courses => 
-        query("SELECT * FROM Professors WHERE courseid = " + "'" + value + "'").then(profs =>
+  console.log(await response)
 
-            
-            processCourseAndProfs(courses, profs)
-
-            //get descriptions of professors and classes and comparisons by making a series of chatgpt queries
-                
-
-            
-    ))
-
-    
-        
-    //console.log(data);
-
- 
-
-
-
-    //res.sendFile(__dirname + '/test.html');*/
-  });
+  return response
+}
 
 async function processCourseAndProfs(courses, profs) {
 
-    //console.log(courses.rows);
-    //console.log(profs.rows);
-
     //check if row exists
-    //console.log(courses)
     course_page = await query("SELECT * FROM course_evaluations WHERE courseid=" + "'" + courses.rows[0].courseid + "'")
 
     course_page = course_page.rows
@@ -161,7 +167,7 @@ async function processCourseAndProfs(courses, profs) {
             let res = await GPT35Turbo("Based on the course description: " + course_description + " and using the reviews listed below Write 10 key phrases in list form related to professor " + prof);
             prompt += res;
 
-            super_prompt += await GPT35Turbo("using the key phrases about professor " + prof + ", give me a 100 word description on the professor's skill or lack thereof in teaching the class. If there is a lack of reviews for a professor, take that into consideration. \n\n" + prompt) + "\n\n";
+            super_prompt += await GPT35Turbo("using the key phrases about professor " + prof + ", give me a 100 word description on the professor's skill or lack thereof in teaching the class. If there is a lack of reviews for a professor, take that into consideration.\n\n" + prompt) + "\n\n";
             //console.log(super_prompt);
         }
 
@@ -172,7 +178,7 @@ async function processCourseAndProfs(courses, profs) {
 
     }
 
-    course_analysis_prompt = "course description: " + course_description + "\n\n median gpa of the class: " + course_median_gpa + "\n\n Description of Professors: " + super_prompt + "\n\n give me an analysis of the course and its professors, along with recommendations on which professor should be targeted and which should be avoided. Give me an objective response."
+    course_analysis_prompt = "course description: " + course_description + "\n\n median gpa of the class: " + course_median_gpa + "\n\n Description of Professors: " + super_prompt + "\n\n Pretend you are a college advisor. Give me an analysis of the course and its professors, along with recommendations on which professor should be targeted and which should be avoided. Give me an objective response."
 
     course_analysis = await GPT35Turbo(course_analysis_prompt);
     console.log(course_analysis);
@@ -239,11 +245,13 @@ async function processCourseAndProfs(courses, profs) {
 
 
 const { Configuration, OpenAIApi } = require("openai");
+const { response } = require("express");
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
 const openai = new OpenAIApi(configuration);
+console.log(process.env.OPENAI_API_KEY)
 
 
 

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Testudo's Choice2</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="pages/test.css">
+    <!--<script src="test.js" defer async></script>-->
+    <style>
+        div{
+            width: 320px;
+            padding: 10px;
+            border: 5px solid gray;
+            margin: 0;
+        }
+        p {color: rgb(0, 0, 0); text-align: center; font-size: 30px;}
+        h1 {color: white;  text-shadow: 3px 3px rg}
+    </style>
+</head>
+
+<body>  
+        <h1><span id="CourseName"><%= CourseName %></span></h1>
+        <p style="padding: 25px; border: 4px solid rgb(255, 255, 255); border-radius: 10px; background-color: #d8d8d8de;"><b>Course Description:</b> <i><span id="CourseDesc"><%= CourseDesc %></span></i></p>
+        <p style="padding: 1px; border: 4px solid rgb(255, 255, 255); border-radius: 10px; background-color: #d8d8d8de;"><b>Median Grade:</b> <span id="CourseMedianGPA"><%= CourseMedianGPA %></span></p>
+        <p style="padding: 10px; border: 4px solid rgb(255, 255, 255); border-radius: 10px; background-color: #d8d8d8de;"><b>Professors:</b> <span id="CourseProfs"><%= CourseProfs %></span></p>
+        <p style="padding: 50px; border: 4px solid rgb(255, 255, 255); border-radius: 10px; background-color: #d8d8d8de;"><b>Analysis of class and professors:</b> <span id="Analysis"><%= Analysis %></span></p>
+
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+</body>
+
+</html>

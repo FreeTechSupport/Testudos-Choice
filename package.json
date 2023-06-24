@@ -1,0 +1,18 @@
+{
+    "name": "testudos-choice",
+    "version": "1.0.0",
+    "description": "Testudo's choice docker",
+    "author": "Mohit, Arkan, Joseph, Bethany",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "dependencies": {
+        "body-parser": "2.0.0-beta.2",
+        "dotenv": "^16.1.4",
+        "ejs": "^3.1.9",
+        "express": "^4.16.1",
+        "openai": "3.2.1",
+        "pg": "8.11.0"
+    }
+}
